@@ -1,0 +1,13 @@
+name: WGCommandFlags
+version: 0.1
+description: '"WorldGuard" extension to add own region flags to allow or block commands.'
+author: BangL
+website: http://bangl.de/
+depend: [WorldGuard, WGCustomFlags]
+main: de.bangl.wgsf.WGCommandFlagsPlugin
+
+permissions:
+  wgcf.flags.cmds-block.*:
+    default: op
+  wgcf.flags.cmds-allow.*:
+    default: op
