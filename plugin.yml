@@ -4,7 +4,7 @@ description: '"WorldGuard" extension to add own region flags to allow or block c
 author: BangL
 website: http://bangl.de/
 depend: [WorldGuard, WGCustomFlags]
-main: de.bangl.wgsf.WGCommandFlagsPlugin
+main: de.bangl.wgcf.WGCommandFlagsPlugin
 
 permissions:
   wgcf.flags.cmds-block.*:
