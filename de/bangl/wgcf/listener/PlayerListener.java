@@ -56,7 +56,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         Location loc = player.getLocation();
         
-        String commandName = new String("");
+        String commandName = "";
         if (event instanceof AsyncPlayerChatEvent) {
             commandName = ((AsyncPlayerChatEvent)event).getMessage().toLowerCase();
         } else if (event instanceof PlayerCommandPreprocessEvent) {
