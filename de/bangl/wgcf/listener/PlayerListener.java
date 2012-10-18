@@ -18,7 +18,7 @@ import org.bukkit.event.player.PlayerEvent;
 
 /**
  *
- * @author BangL
+ * @author BangL, mewin
  */
 public class PlayerListener implements Listener {
     private WGCommandFlagsPlugin plugin;
