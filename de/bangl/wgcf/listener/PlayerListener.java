@@ -41,8 +41,7 @@ public class PlayerListener implements Listener {
         Location loc = player.getLocation();
 
         String commandName = event.getMessage().toLowerCase().split(" ")[0];
-        if (!Utils.cmdAllowedAtLocation(plugin.getWGP(), commandName, loc))
-        {
+        if (!Utils.cmdAllowedAtLocation(plugin.getWGP(), commandName, loc)) {
             String msg = plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setMessage("/nothingtodohere"); //Block even if other plugin tries to parse it
