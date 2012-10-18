@@ -5,7 +5,9 @@ import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import java.util.HashSet;
+import java.util.Iterator;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -46,12 +48,41 @@ public final class Utils {
         try {
             result = (HashSet<String>)regions.getFlag(flag, wgPlayer);
         } catch(Exception e) {
-            result = new HashSet<String>();
+            result = new HashSet<>();
         }
         if (result != null) {
             return (HashSet<String>)result;
         } else {
-            return new HashSet<String>();
+            return new HashSet<>();
         }
+    }
+    
+    public static HashSet<String> getMergedFlag(WorldGuardPlugin wgp, CustomSetFlag flag, Player player, Location loc)
+    {
+        //LocalPlayer wgPlayer = wgp.wrapPlayer(player);
+        ApplicableRegionSet regions = wgp.getRegionManager(loc.getWorld())
+                .getApplicableRegions(loc);
+        HashSet<String> result = new HashSet<>();
+        
+        Iterator<ProtectedRegion> itr = regions.iterator();
+        
+        while(itr.hasNext())
+        {
+            HashSet<String> values = (HashSet<String>) itr.next().getFlag(flag);
+            
+            Iterator<String> itr2 = values.iterator();
+            
+            while(itr2.hasNext())
+            {
+                String value = itr2.next();
+                
+                if (!result.contains(value))
+                {
+                    result.add(value);
+                }
+            }
+        }
+        
+        return result;
     }
 }
