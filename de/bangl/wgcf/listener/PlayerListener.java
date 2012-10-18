@@ -39,9 +39,8 @@ public class PlayerListener implements Listener {
 
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-                        event.getPlayer().sendMessage(ChatColor.RED + "onPlayerCommandPreprocess");
         this.handleCommand(event);
     }
 
