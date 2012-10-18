@@ -105,7 +105,6 @@ public final class Utils {
         }
         ApplicableRegionSet regions = rm.getApplicableRegions(loc);
         Iterator<ProtectedRegion> itr = regions.iterator();
-        //Map<ProtectedRegion, Boolean> allowedInRegion = new HashMap<>();
         Map<ProtectedRegion, Boolean> regionsToCheck = new HashMap<>();
         Set<ProtectedRegion> ignoredRegions = new HashSet<>();
         
