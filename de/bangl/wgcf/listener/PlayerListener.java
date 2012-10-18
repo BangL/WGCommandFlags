@@ -1,8 +1,8 @@
 package de.bangl.wgcf.listener;
 
 import com.mewin.WGCustomFlags.flags.CustomSetFlag;
-import com.sk89q.worldguard.protection.flags.RegionGroup;
 import com.sk89q.worldguard.protection.flags.CommandStringFlag;
+import com.sk89q.worldguard.protection.flags.RegionGroup;
 import de.bangl.wgcf.Utils;
 import de.bangl.wgcf.WGCommandFlagsPlugin;
 import java.util.Set;
@@ -12,9 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerEvent;
 
 /**
  *
