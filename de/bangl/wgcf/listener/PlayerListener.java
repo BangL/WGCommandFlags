@@ -33,16 +33,10 @@ public class PlayerListener implements Listener {
 
         // Register events
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        this.handleCommand(event);
-    }
-
-    private void handleCommand(PlayerCommandPreprocessEvent event) {
-
         Player player = event.getPlayer();
         Location loc = player.getLocation();
 
