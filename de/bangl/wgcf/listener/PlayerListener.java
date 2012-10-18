@@ -39,37 +39,22 @@ public class PlayerListener implements Listener {
 
     }
 
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onPlayerChat(final AsyncPlayerChatEvent event) {
-                        event.getPlayer().sendMessage(ChatColor.RED + "onPlayerChat");
-        this.handleCommand(event);
-    }
-
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
                         event.getPlayer().sendMessage(ChatColor.RED + "onPlayerCommandPreprocess");
         this.handleCommand(event);
     }
 
-    private void handleCommand(PlayerEvent event) {
+    private void handleCommand(PlayerCommandPreprocessEvent event) {
         
         Player player = event.getPlayer();
         Location loc = player.getLocation();
         
-        String commandName = "";
-        if (event instanceof AsyncPlayerChatEvent) {
-            commandName = ((AsyncPlayerChatEvent)event).getMessage().toLowerCase();
-        } else if (event instanceof PlayerCommandPreprocessEvent) {
-            commandName = ((PlayerCommandPreprocessEvent)event).getMessage().toLowerCase();
-        }
-
-                        player.sendMessage(ChatColor.RED + commandName);
+        String commandName = event.getMessage().toLowerCase().split(" ")[0];
         Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
-                        player.sendMessage(ChatColor.RED + blocked.toString());
         Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
-                        player.sendMessage(ChatColor.RED + allowed.toString());
 
-        for (String blockedcmd : blocked) {
+        /*for (String blockedcmd : blocked) {
                         player.sendMessage(ChatColor.RED + blockedcmd);
             if (blocked != null && blockedcmd.startsWith(commandName)) {
                         player.sendMessage(ChatColor.RED + "blocked");
@@ -79,15 +64,20 @@ public class PlayerListener implements Listener {
                         player.sendMessage(ChatColor.RED + "allowed");
                         String msg = plugin.getConfig().getString("messages.blocked");
                         player.sendMessage(ChatColor.RED + msg);
-                        if (event instanceof AsyncPlayerChatEvent) {
-                            ((AsyncPlayerChatEvent)event).setCancelled(true);
-                        } else if (event instanceof PlayerCommandPreprocessEvent) {
-                            ((PlayerCommandPreprocessEvent)event).setCancelled(true);
-                        }
+                        event.setMessage("/nothingtodohere");
+                        event.setCancelled(true);
                         return;
                     }
                 }
             }
+        }*/
+        
+        if (blocked.contains(commandName) && !allowed.contains(commandName))
+        {
+            String msg = plugin.getConfig().getString("messages.blocked");
+            player.sendMessage(ChatColor.RED + msg);
+            event.setMessage("/nothingtodohere"); //Block even if other plugin tries to parse it
+            event.setCancelled(true);
         }
     }
 }
