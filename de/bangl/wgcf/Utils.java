@@ -70,6 +70,11 @@ public final class Utils {
         {
             HashSet<String> values = (HashSet<String>) itr.next().getFlag(flag);
             
+            if (values == null)
+            {
+                continue;
+            }
+            
             Iterator<String> itr2 = values.iterator();
             
             while(itr2.hasNext())
