@@ -46,10 +46,13 @@ public class WGCommandFlagsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
         // we nullify all vars, cause it could be a server reload and we don't wanna leave trash in our expensive RAM.
         this.pluginWGCustomFlags = null;
         this.pluginWorldGuard = null;
         this.listenerPlayer = null;
+
+        saveConfig();
     }
 
 }
