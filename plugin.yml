@@ -3,5 +3,5 @@ version: 0.1
 description: '"WorldGuard" extension to add own region flags to allow or block commands.'
 authors: [BangL, mewin]
 website: http://bangl.de/
-depend: [WorldGuard, WGCustomFlags]
+depend: [WorldGuard, WorldEdit, WGCustomFlags]
 main: de.bangl.wgcf.WGCommandFlagsPlugin
