@@ -41,7 +41,6 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-                        event.getPlayer().sendMessage(ChatColor.RED + "onPlayerCommandPreprocess");
         this.handleCommand(event);
     }
 
@@ -51,8 +50,8 @@ public class PlayerListener implements Listener {
         Location loc = player.getLocation();
         
         String commandName = event.getMessage().toLowerCase().split(" ")[0];
-        Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
-        Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
+        Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
+        Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
 
         if (blocked.contains(commandName) && !allowed.contains(commandName))
         {
