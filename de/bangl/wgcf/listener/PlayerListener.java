@@ -45,16 +45,18 @@ public class PlayerListener implements Listener {
     }
 
     private void handleCommand(PlayerCommandPreprocessEvent event) {
-        
+
         Player player = event.getPlayer();
         Location loc = player.getLocation();
-        
+
         String commandName = event.getMessage().toLowerCase().split(" ")[0];
         Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
         Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
 
-        if (blocked.contains(commandName) && !allowed.contains(commandName))
-        {
+        if ((allowed != null && !allowed.contains(commandName)
+                && (blocked == null || blocked.contains(commandName)))
+                || (blocked != null && blocked.contains(commandName)
+                && (allowed == null || !allowed.contains(commandName)))) {
             String msg = plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setMessage("/nothingtodohere"); //Block even if other plugin tries to parse it
