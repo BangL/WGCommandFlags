@@ -2,7 +2,7 @@ package de.bangl.wgcf.listener;
 
 import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.protection.flags.RegionGroup;
-import com.sk89q.worldguard.protection.flags.StringFlag;
+import com.sk89q.worldguard.protection.flags.CommandStringFlag;
 import de.bangl.wgcf.Utils;
 import de.bangl.wgcf.WGCommandFlagsPlugin;
 import java.util.Set;
@@ -24,8 +24,8 @@ public class PlayerListener implements Listener {
     private WGCommandFlagsPlugin plugin;
 
     // Command flags
-    public static final CustomSetFlag FLAG_CMDS_BLOCK = new CustomSetFlag("cmds-block", new StringFlag("cmd-block", RegionGroup.ALL));
-    public static final CustomSetFlag FLAG_CMDS_ALLOW = new CustomSetFlag("cmds-allow", new StringFlag("cmd-allow", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_CMDS_BLOCK = new CustomSetFlag("cmds-block", new CommandStringFlag("cmd-block", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_CMDS_ALLOW = new CustomSetFlag("cmds-allow", new CommandStringFlag("cmd-allow", RegionGroup.ALL));
 
     public PlayerListener(WGCommandFlagsPlugin plugin) {
         this.plugin = plugin;
