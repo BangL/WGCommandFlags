@@ -54,24 +54,6 @@ public class PlayerListener implements Listener {
         Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
         Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
 
-        /*for (String blockedcmd : blocked) {
-                        player.sendMessage(ChatColor.RED + blockedcmd);
-            if (blocked != null && blockedcmd.startsWith(commandName)) {
-                        player.sendMessage(ChatColor.RED + "blocked");
-                for (String allowedcmd : allowed) {
-                        player.sendMessage(ChatColor.RED + allowedcmd);
-                    if (allowed == null || !allowedcmd.startsWith(commandName)) {
-                        player.sendMessage(ChatColor.RED + "allowed");
-                        String msg = plugin.getConfig().getString("messages.blocked");
-                        player.sendMessage(ChatColor.RED + msg);
-                        event.setMessage("/nothingtodohere");
-                        event.setCancelled(true);
-                        return;
-                    }
-                }
-            }
-        }*/
-        
         if (blocked.contains(commandName) && !allowed.contains(commandName))
         {
             String msg = plugin.getConfig().getString("messages.blocked");
