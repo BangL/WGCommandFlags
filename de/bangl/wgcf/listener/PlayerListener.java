@@ -5,16 +5,13 @@ import com.sk89q.worldguard.protection.flags.RegionGroup;
 import com.sk89q.worldguard.protection.flags.StringFlag;
 import de.bangl.wgcf.Utils;
 import de.bangl.wgcf.WGCommandFlagsPlugin;
-import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerEvent;
 
 /**
  *
@@ -50,10 +47,11 @@ public class PlayerListener implements Listener {
         Location loc = player.getLocation();
         
         String commandName = event.getMessage().toLowerCase().split(" ")[0];
-        Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
-        Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
+        //Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_BLOCK, player, loc);
+        //Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_CMDS_ALLOW, player, loc);
 
-        if (blocked.contains(commandName) && !allowed.contains(commandName))
+        //if (blocked.contains(commandName) && !allowed.contains(commandName))
+        if (!Utils.cmdAllowedAtLocation(plugin.getWGP(), commandName, loc))
         {
             String msg = plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
