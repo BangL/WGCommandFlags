@@ -1,4 +1,4 @@
 WGCommandFlags
 ==============
 
-"Essentials" extension to (dis)allow the execution of commands in specific "WorldGuard" regions.
+WorldGuard extension to deny the execution of commands in specific regions.
