@@ -17,7 +17,10 @@
 package de.bangl.wgcf;
 
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
+import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.CommandStringFlag;
+import com.sk89q.worldguard.protection.flags.RegionGroup;
 import de.bangl.wgcf.listener.PlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,9 +30,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class WGCommandFlagsPlugin extends JavaPlugin {
 
+    // Command flags
+    public static final CustomSetFlag FLAG_CMDS_BLOCK = new CustomSetFlag("cmds-block", new CommandStringFlag("cmd-block", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_CMDS_ALLOW = new CustomSetFlag("cmds-allow", new CommandStringFlag("cmd-allow", RegionGroup.ALL));
+
     // Plugins
-    private WGCustomFlagsPlugin pluginWGCustomFlags;
     private WorldGuardPlugin pluginWorldGuard;
+    private WGCustomFlagsPlugin pluginWGCustomFlags;
 
     // Listeners
     private PlayerListener listenerPlayer;
@@ -55,6 +62,10 @@ public class WGCommandFlagsPlugin extends JavaPlugin {
         // Init and register custom flags
         this.pluginWGCustomFlags = Utils.getWGCustomFlags(this);
 
+        // Register custom flags
+        this.pluginWGCustomFlags.addCustomFlag(FLAG_CMDS_BLOCK);
+        this.pluginWGCustomFlags.addCustomFlag(FLAG_CMDS_ALLOW);
+
         // Register all listeners
         this.listenerPlayer = new PlayerListener(this);
         
@@ -70,5 +81,4 @@ public class WGCommandFlagsPlugin extends JavaPlugin {
 
         saveConfig();
     }
-
 }
