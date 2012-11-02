@@ -79,6 +79,6 @@ public class WGCommandFlagsPlugin extends JavaPlugin {
         this.pluginWorldGuard = null;
         this.listenerPlayer = null;
 
-        saveConfig();
+        //saveConfig();
     }
 }
