@@ -1,7 +1,7 @@
 name: WGCommandFlags
 main: de.bangl.wgcf.WGCommandFlagsPlugin
 description: WorldGuard extension to deny the execution of commands in specific regions.
-version: 0.1
+version: 1.0
 
 authors: [ BangL, mewin ]
 depend: [ WorldGuard, WorldEdit, WGCustomFlags ]
